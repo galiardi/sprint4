@@ -13,7 +13,7 @@
     />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  <body>
+  <body class="bg-dark">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -74,8 +74,11 @@
       </div>
     </nav>
     <main>
-      <button id="prevButton" class="btn btn-primary">anterior</button>
-      <button id="nextButton" class="btn btn-primary">siguiente</button>
+      <div class="d-flex justify-content-center pt-4 pb-2">
+        <button id="prevButton" class="btn btn-primary mx-3">anterior</button>
+        <button id="nextButton" class="btn btn-primary mx-3">siguiente</button>
+      </div>
+      <div id="pokemonListDiv"></div>
 
       <!-- Button trigger modal -->
       <button

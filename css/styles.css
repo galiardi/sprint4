@@ -1,0 +1,33 @@
+#pokemonListDiv {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+  padding: 0.5rem;
+}
+
+.card {
+  margin: 0.5rem;
+}
+
+@media screen and (min-width: 600px) {
+  #pokemonListDiv {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #pokemonListDiv {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #pokemonListDiv {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  #pokemonListDiv {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
