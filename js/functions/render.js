@@ -1,6 +1,6 @@
 import { getCard } from './getCard.js';
 
-async function displayPokemonList(pokemonList, htmlElement) {
+async function render(pokemonList, htmlElement) {
   const pokemonCardList = pokemonList.map((pokemon) => {
     // if ((result.status = 'rejected')) return '';
     const { id, name, height, weight, imgUrl } = pokemon;
@@ -17,4 +17,4 @@ async function displayPokemonList(pokemonList, htmlElement) {
   htmlElement.innerHTML = pokemonCardList.join('');
 }
 
-export { displayPokemonList };
+export { render };

@@ -1,34 +1,37 @@
-import { mainFunction } from './functions/mainFunction.js';
+import { App } from './classes/App.js';
+import { getData } from './functions/getData.js';
+import { setData } from './functions/setData.js';
+import { render } from './functions/render.js';
+import { showAbilities } from './functions/showAbilities.js';
 
 // html elements
 const nextButton = document.getElementById('nextButton');
 const prevButton = document.getElementById('prevButton');
 const pokemonListDiv = document.getElementById('pokemonListDiv');
 
-// url
-const pokemonEndpoint = 'https://pokeapi.co/api/v2/pokemon';
-
 // data
-const appData = {
-  next: '',
-  prev: '',
-  pokemonList: [],
-  pokemonListById: {},
-};
+const app = new App('https://pokeapi.co/api/v2/pokemon');
+
+// functions
+async function mainFunction(url, dataObj, htmlElement) {
+  if (!url) return;
+  const data = await getData(url);
+  await setData(data, dataObj);
+  render(dataObj.pokemonList, htmlElement);
+}
 
 // listeners
 nextButton.addEventListener('click', () => {
-  mainFunction(appData.next, appData, pokemonListDiv);
+  mainFunction(app.next, app, pokemonListDiv);
 });
 
 prevButton.addEventListener('click', () => {
-  mainFunction(appData.prev, appData, pokemonListDiv);
+  mainFunction(app.prev, app, pokemonListDiv);
 });
 
-// DOM Elements Callbacks
-function handleClick(id) {
-  console.log(id);
-}
+window.handleClick = (id) => {
+  showAbilities(id, app);
+};
 
 // start
-mainFunction(pokemonEndpoint, appData, pokemonListDiv);
+mainFunction(app.url, app, pokemonListDiv);
