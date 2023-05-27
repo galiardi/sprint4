@@ -1,6 +1,5 @@
 function showAbilities(id, dataObj) {
-  console.log(id);
-  console.log(dataObj.pokemonList[id].abilities);
+  console.log(dataObj.pokemonListById[id].abilities);
 }
 
 export { showAbilities };

@@ -11,7 +11,6 @@ async function getData(url) {
 
   // espera que se resuelvan las promesas del arreglo en forma paralela
   const promiseListResult = await Promise.allSettled(promiseList);
-
   return { promiseListResult, next, prev };
 }
 
