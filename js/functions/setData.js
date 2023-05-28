@@ -7,9 +7,9 @@ async function setData(data, obj) {
     return new Pokemon(result.value);
   });
 
-  obj.next = next;
+  obj.nextUrl = next;
 
-  obj.prev = prev;
+  obj.prevUrl = prev;
 }
 
 export { setData };

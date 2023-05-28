@@ -17,7 +17,7 @@ async function mainFunction(url, dataObj, htmlElement) {
   if (!url) return;
   const data = await getData(url);
   await setData(data, dataObj);
-  render(dataObj.pokemonList, htmlElement);
+  render(dataObj, htmlElement);
 }
 
 // listeners

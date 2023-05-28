@@ -1,7 +1,12 @@
 import { getCard } from './getCard.js';
 
-async function render(pokemonList, htmlElement) {
-  const pokemonCardList = pokemonList.map((pokemon) => {
+async function render(data, htmlElement) {
+  console.log(data);
+  const prevButton = document.getElementById('prevButton');
+  if (data.prevUrl === null) {
+    console.log(prevButton);
+  }
+  const pokemonCardList = data.pokemonList.map((pokemon) => {
     // if ((result.status = 'rejected')) return '';
     const { id, name, height, weight, imgUrl } = pokemon;
 
