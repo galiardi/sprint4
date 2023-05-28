@@ -1,7 +1,7 @@
-function getCard(data) {
+function getCard(data, cardWidth = '') {
   const { id, name, height, weight, imgUrl } = data;
   return `
-  <div class="card">
+  <div class="card" style="width: ${cardWidth};">
     <img src=${imgUrl} class="card-img-top" alt="${name}">
     <div class="card-body">
       <h5 class="card-title">${name}</h5>

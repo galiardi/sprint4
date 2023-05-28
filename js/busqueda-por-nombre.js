@@ -1,6 +1,6 @@
 import { Pokemon } from './classes/Pokemon.js';
-import { getCard } from './functions/getCard.js';
-import { getModal } from './functions/getModal.js';
+import { getCard } from './functions/ui/getCard.js';
+import { getModal } from './functions/ui/getModal.js';
 
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
@@ -22,15 +22,8 @@ searchForm.addEventListener('submit', async (e) => {
     const data = await response.json();
 
     pokemon = new Pokemon(data);
-    const { id, name, height, weight, imgUrl } = pokemon;
 
-    const card = getCard({
-      id,
-      name,
-      height,
-      weight,
-      imgUrl,
-    });
+    const card = getCard(pokemon, '25rem');
 
     cardDiv.innerHTML = card;
   } catch (error) {

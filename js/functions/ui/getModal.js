@@ -1,8 +1,4 @@
 function getModal(pokemon) {
-  const abilities = pokemon.abilities.map(
-    (obj) => `<p>${obj.ability.name}</p>`
-  );
-
   return `
     <!-- Vertically centered scrollable modal -->
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -18,10 +14,10 @@ function getModal(pokemon) {
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Habilidades de ${pokemon.name}
+                ${pokemon.name}
               </h1>
             </div>
-            <div class="modal-body">${abilities.join('')}</div>
+            <canvas id="abilitiesChart" style="width: 100%; padding: 1rem;"></canvas>
             <div class="modal-footer">
               <button
                 type="button"

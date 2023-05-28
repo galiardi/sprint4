@@ -7,6 +7,7 @@ import { showAbilities } from './functions/showAbilities.js';
 // html elements
 const nextButton = document.getElementById('nextButton');
 const prevButton = document.getElementById('prevButton');
+const resetButton = document.getElementById('resetButton');
 const pokemonListDiv = document.getElementById('pokemonListDiv');
 
 // data
@@ -22,11 +23,15 @@ async function mainFunction(url, dataObj, htmlElement) {
 
 // listeners
 nextButton.addEventListener('click', () => {
-  mainFunction(app.next, app, pokemonListDiv);
+  mainFunction(app.nextUrl, app, pokemonListDiv);
 });
 
 prevButton.addEventListener('click', () => {
-  mainFunction(app.prev, app, pokemonListDiv);
+  mainFunction(app.prevUrl, app, pokemonListDiv);
+});
+
+resetButton.addEventListener('click', () => {
+  mainFunction(app.url, app, pokemonListDiv);
 });
 
 window.handleClick = (id) => {
@@ -34,4 +39,5 @@ window.handleClick = (id) => {
 };
 
 // start
+
 mainFunction(app.url, app, pokemonListDiv);
