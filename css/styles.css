@@ -1,3 +1,8 @@
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
 #pokemonListDiv {
   display: grid;
   /* grid-template-columns: 1fr 1fr 1fr 1fr; */
@@ -6,6 +11,16 @@
 
 .card {
   margin: 0.5rem;
+}
+.safeArea {
+  height: 5rem;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 1rem;
 }
 
 @media screen and (min-width: 600px) {
