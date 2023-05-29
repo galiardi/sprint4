@@ -23,6 +23,10 @@ footer {
   padding: 1rem;
 }
 
+#searchInput {
+  max-width: 600px;
+}
+
 @media screen and (min-width: 600px) {
   #pokemonListDiv {
     grid-template-columns: 1fr 1fr;
