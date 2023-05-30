@@ -55,10 +55,7 @@
               Seleccionar Pokemon 1
             </button>
           </div>
-          <div class="player"></div>
-          <div class="healthBarContainer">
-            <div id="healthBar1" class="healthBar" style="width: 100%"></div>
-          </div>
+          <div id="playerDiv1" class="player"></div>
         </div>
 
         <div class="container-fluid playerContainer">
@@ -67,15 +64,14 @@
               Seleccionar Pokemon 2
             </button>
           </div>
-          <div class="player"></div>
-          <div class="healthBarContainer">
-            <div id="healthBar2" class="healthBar" style="width: 100%"></div>
-          </div>
+          <div id="playerDiv2" class="player"></div>
         </div>
       </div>
 
-      <!-- Vertically centered modal -->
-      <div class="modal-dialog modal-dialog-centered text-bg-light">
+      <!-- Vertically centered scrollable modal -->
+      <div
+        class="modal-dialog modal-dialog-centered modal-dialog-scrollable text-bg-light"
+      >
         <div
           class="modal fade"
           id="selectPokemonModal"
@@ -89,15 +85,9 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                   Selecciona tu pokemon
                 </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
               </div>
               <div class="modal-body">
-                <form id="searchForm" class="d-flex m-5" role="search">
+                <form id="searchForm" class="d-flex m-3" role="search">
                   <input
                     id="searchInput"
                     class="form-control me-2"
@@ -119,7 +109,11 @@
                 >
                   Cancelar
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button
+                  id="selectPokemonModal-selectButton"
+                  type="button"
+                  class="btn btn-primary"
+                >
                   Seleccionar
                 </button>
               </div>
@@ -137,6 +131,7 @@
       integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="./js/game.js" type="module"></script>
   </body>
 </html>

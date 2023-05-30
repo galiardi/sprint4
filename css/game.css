@@ -12,7 +12,18 @@
 }
 
 .player {
+  display: flex;
+  justify-content: center;
   min-height: 60vh;
+}
+
+.abilityButton {
+  border-radius: 100%;
+  width: 4rem;
+  height: 4rem;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  margin: 0.5rem;
 }
 
 .healthBarContainer {
@@ -30,7 +41,7 @@
   border-radius: 0.5rem;
 }
 
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 760px) {
   .players {
     flex-direction: row;
   }

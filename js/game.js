@@ -1,17 +1,29 @@
+import { PlayerCharacter } from './classes/PlayerCharacter.js';
+import { getCard2 } from './functions/ui/getCard2.js';
+
 const selectPokemon1Button = document.getElementById('selectPokemon1Button');
 const selectPokemon2Button = document.getElementById('selectPokemon2Button');
+const selectPokemonModal = new bootstrap.Modal('#selectPokemonModal'); // para manipular el modal de bootstrap con js
 const searchForm = document.getElementById('searchForm');
-const healthBarCanvas = document.getElementById('healthBarCanvas');
+const cardDiv = document.getElementById('cardDiv');
+const playerDiv1 = document.getElementById('playerDiv1');
+const playerDiv2 = document.getElementById('playerDiv2');
 
-selectPokemon1Button.addEventListener('click', () => handleSelectPokemon(1));
-selectPokemon2Button.addEventListener('click', () => handleSelectPokemon(2));
+let currentPlayer = undefined;
+
+selectPokemon1Button.addEventListener('click', () => {
+  currentPlayer = 1;
+  selectPokemonModal.show();
+});
+
+selectPokemon2Button.addEventListener('click', () => {
+  currentPlayer = 2;
+  selectPokemonModal.show();
+});
+
 searchForm.addEventListener('submit', handleSearch);
 
 // listeners
-function handleSelectPokemon(num) {
-  const selectPokemonModal = new bootstrap.Modal('#selectPokemonModal'); // para manipular el modal de bootstrap con js
-  selectPokemonModal.show();
-}
 
 async function handleSearch(e) {
   e.preventDefault();
@@ -24,13 +36,27 @@ async function handleSearch(e) {
       `https://pokeapi.co/api/v2/pokemon/${searchName}`
     );
     const data = await response.json();
-    console.log(data);
-    // pokemon = new Pokemon(data);
+    const pokemon = new PlayerCharacter(data);
+    console.log(pokemon);
 
-    // const card = getCard(pokemon, '25rem');
+    const card = getCard2(pokemon, '18rem');
+    cardDiv.innerHTML = card;
 
-    // cardDiv.innerHTML = card;
-  } catch (error) {
+    // Seleccionar
+    const selectButton = document.getElementById(
+      'selectPokemonModal-selectButton'
+    );
+    selectButton.addEventListener('click', () => {
+      if (currentPlayer === 1) {
+        playerDiv1.innerHTML = card;
+      } else if (currentPlayer === 2) {
+        playerDiv2.innerHTML = card;
+      }
+      selectPokemonModal.hide();
+      cardDiv.innerHTML = '';
+      searchInput.value = '';
+    });
+  } catch (err) {
     console.log(err);
   }
 }

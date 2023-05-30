@@ -1,3 +1,5 @@
+import { Pokemon } from './Pokemon.js';
+
 class PlayerCharacter extends Pokemon {
   #health = 100;
   #isAlive = true;
