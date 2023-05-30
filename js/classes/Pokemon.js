@@ -5,14 +5,18 @@ class Pokemon {
   #weight;
   #imgUrl;
   #abilities;
-  constructor({ id, name, height, weight, sprites, abilities }) {
+  #stats;
+
+  constructor({ id, name, height, weight, sprites, abilities, stats }) {
     this.#id = id;
     this.#name = name;
     this.#height = height;
     this.#weight = weight;
     this.#imgUrl = sprites.front_default;
     this.#abilities = abilities;
+    this.#stats = stats;
   }
+
   get id() {
     return this.#id;
   }
@@ -30,6 +34,12 @@ class Pokemon {
   }
   get abilities() {
     return this.#abilities;
+  }
+  get stats() {
+    return this.#stats.map((stat) => ({
+      value: stat.base_stat,
+      name: stat.stat.name,
+    }));
   }
 }
 

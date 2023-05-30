@@ -2,7 +2,7 @@ import { App } from './classes/App.js';
 import { getData } from './functions/getData.js';
 import { setData } from './functions/setData.js';
 import { render } from './functions/render.js';
-import { showAbilities } from './functions/showAbilities.js';
+import { showStats } from './functions/showStats.js';
 
 // html elements
 const nextButton = document.getElementById('nextButton');
@@ -35,7 +35,7 @@ resetButton.addEventListener('click', () => {
 });
 
 window.handleClick = (id) => {
-  showAbilities(id, app);
+  showStats(id, app);
 };
 
 // start

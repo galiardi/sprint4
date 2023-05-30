@@ -2,7 +2,6 @@ import { getCard } from './ui/getCard.js';
 
 async function render(dataObj, htmlElement) {
   // habilita/deshabilita los botones dependiendo si hay o no una url dsiponible
-  console.log(dataObj);
   const prevButton = document.getElementById('prevButton');
   const nextButton = document.getElementById('nextButton');
   prevButton.disabled = dataObj.prevUrl === null;

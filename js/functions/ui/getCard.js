@@ -7,7 +7,7 @@ function getCard(data, cardWidth = '') {
       <h5 class="card-title">${name}</h5>
       <p class="card-text">altura: ${height}</p>
       <p class="card-text">peso: ${weight}</p>
-      <button onclick="handleClick(${id})" class="btn btn-primary">Ver habilidades</button>
+      <button onclick="handleClick(${id})" class="btn btn-primary">Ver estadísticas</button>
     </div>
   </div>`;
 }

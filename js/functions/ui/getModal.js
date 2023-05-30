@@ -5,7 +5,7 @@ function getModal(pokemon) {
       <!-- Modal -->
       <div
         class="modal fade"
-        id="abilitiesModal"
+        id="statsModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -17,7 +17,7 @@ function getModal(pokemon) {
                 ${pokemon.name}
               </h1>
             </div>
-            <canvas id="abilitiesChart" style="width: 100%; padding: 1rem;"></canvas>
+            <canvas id="statsChart" style="width: 100%; padding: 1rem;"></canvas>
             <div class="modal-footer">
               <button
                 type="button"

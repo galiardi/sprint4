@@ -34,27 +34,38 @@ searchForm.addEventListener('submit', async (e) => {
 window.handleClick = function () {
   const modal = getModal(pokemon);
   modalDiv.innerHTML = modal;
-  const abilities = pokemon.abilities.map((obj) => obj.ability.name);
 
-  const myChart = new Chart('abilitiesChart', {
-    type: 'pie',
+  const labels = pokemon.stats.map((stat) => stat.name);
+  const data = pokemon.stats.map((stat) => stat.value);
+
+  const myChart = new Chart('statsChart', {
+    type: 'polarArea',
     data: {
-      labels: abilities,
+      labels,
       datasets: [
         {
-          data: abilities.map((ability) => Math.floor(100 / abilities.length)),
-          backgroundColor: ['#00aba9', '#2b5797', '#e8c3b9', '#1e7145'],
+          data,
+          backgroundColor: [
+            '#d5def5',
+            '#8594e4',
+            '#6643b5',
+            '#430f58',
+            '#00aba9',
+            '#2b5797',
+            '#e8c3b9',
+            '#1e7145',
+          ],
         },
       ],
     },
     options: {
       title: {
         display: true,
-        text: `Habilidades de ${pokemon.name}`,
+        text: `Estadísticas de ${pokemon.name}`,
       },
     },
   });
 
-  const abilitiesModal = new bootstrap.Modal('#abilitiesModal'); // para manipular el modal de bootstrap con js
-  abilitiesModal.show();
+  const statsModal = new bootstrap.Modal('#statsModal'); // para manipular el modal de bootstrap con js
+  statsModal.show();
 };
