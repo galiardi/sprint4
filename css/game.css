@@ -1,0 +1,37 @@
+.players {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.playerContainer {
+  border: 0.25rem solid darkgray;
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+
+.player {
+  min-height: 60vh;
+}
+
+.healthBarContainer {
+  background-color: darkgray;
+  width: 50%;
+  height: 2rem;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.healthBar {
+  background-color: red;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (min-width: 650px) {
+  .players {
+    flex-direction: row;
+  }
+}

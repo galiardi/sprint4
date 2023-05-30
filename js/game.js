@@ -1,6 +1,7 @@
 const selectPokemon1Button = document.getElementById('selectPokemon1Button');
 const selectPokemon2Button = document.getElementById('selectPokemon2Button');
 const searchForm = document.getElementById('searchForm');
+const healthBarCanvas = document.getElementById('healthBarCanvas');
 
 selectPokemon1Button.addEventListener('click', () => handleSelectPokemon(1));
 selectPokemon2Button.addEventListener('click', () => handleSelectPokemon(2));
