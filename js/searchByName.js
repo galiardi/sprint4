@@ -1,6 +1,7 @@
 import { Pokemon } from './classes/Pokemon.js';
 import { getCard } from './functions/ui/getCard.js';
 import { getModal } from './functions/ui/getModal.js';
+import { insertStatsChart } from './functions/ui/insertStatsChart.js';
 
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
@@ -32,40 +33,9 @@ searchForm.addEventListener('submit', async (e) => {
 });
 
 window.handleClick = function () {
-  const modal = getModal(pokemon);
+  const modal = getModal(pokemon); // crea un modal de bootstrap con los datos pokemon
   modalDiv.innerHTML = modal;
-
-  const labels = pokemon.stats.map((stat) => stat.name);
-  const data = pokemon.stats.map((stat) => stat.value);
-
-  const myChart = new Chart('statsChart', {
-    type: 'polarArea',
-    data: {
-      labels,
-      datasets: [
-        {
-          data,
-          backgroundColor: [
-            '#d5def5',
-            '#8594e4',
-            '#6643b5',
-            '#430f58',
-            '#00aba9',
-            '#2b5797',
-            '#e8c3b9',
-            '#1e7145',
-          ],
-        },
-      ],
-    },
-    options: {
-      title: {
-        display: true,
-        text: `Estadísticas de ${pokemon.name}`,
-      },
-    },
-  });
-
+  insertStatsChart('statsChart', pokemon); // crea e inserta un gráfico en el modal
   const statsModal = new bootstrap.Modal('#statsModal'); // para manipular el modal de bootstrap con js
   statsModal.show();
 };
