@@ -5,40 +5,32 @@ const selectPokemon1Button = document.getElementById('selectPokemon1Button');
 const selectPokemon2Button = document.getElementById('selectPokemon2Button');
 const selectPokemonModal = new bootstrap.Modal('#selectPokemonModal'); // para manipular el modal de bootstrap con js
 const searchForm = document.getElementById('searchForm');
-const cardDiv = document.getElementById('cardDiv');
+const modalCardDiv = document.getElementById('modalCardDiv');
 const playerDiv1 = document.getElementById('playerDiv1');
 const playerDiv2 = document.getElementById('playerDiv2');
 const startButton = document.getElementById('startButton');
 
+// data
 let gameIsRuning = false;
-let currentPlayer = undefined;
+let currentSelector = undefined; // Para llevar registro de cuál pokemon se está seleccionando
 let playerCharacters = {
   player1: {},
   player2: {},
 };
 
+// listeners
+
 selectPokemon1Button.addEventListener('click', () => {
-  currentPlayer = 'player1';
+  currentSelector = 'player1';
   selectPokemonModal.show();
 });
 
 selectPokemon2Button.addEventListener('click', () => {
-  currentPlayer = 'player2';
+  currentSelector = 'player2';
   selectPokemonModal.show();
 });
 
-searchForm.addEventListener('submit', handleSearch);
-
-startButton.addEventListener('click', () => {
-  gameIsRuning = !gameIsRuning;
-  gameIsRuning
-    ? (startButton.textContent = 'parar')
-    : (startButton.textContent = 'iniciar');
-});
-
-// listeners
-
-async function handleSearch(e) {
+searchForm.addEventListener('submit', async function (e) {
   e.preventDefault();
   const searchName = searchInput.value.trim().toLowerCase();
 
@@ -50,32 +42,45 @@ async function handleSearch(e) {
     );
     const data = await response.json();
     const pokemon = new PlayerCharacter(data);
-    console.log(pokemon);
 
-    const card = getCard2(pokemon, '18rem', currentPlayer);
-    cardDiv.innerHTML = card;
+    const card = getCard2(pokemon, '18rem', currentSelector);
+    modalCardDiv.innerHTML = card;
 
     // Seleccionar
     const selectButton = document.getElementById(
       'selectPokemonModal-selectButton'
     );
-    selectButton.addEventListener('click', () => {
-      if (currentPlayer === 'player1') {
+
+    //listener para seleccionar un pokemon
+    const selectListener = () => {
+      if (currentSelector === 'player1') {
         playerDiv1.innerHTML = card;
         playerCharacters.player1 = pokemon;
-      } else if (currentPlayer === 'player2') {
+      } else if (currentSelector === 'player2') {
         playerDiv2.innerHTML = card;
         playerCharacters.player2 = pokemon;
       }
+      // esconde el modal y limpia datos
       selectPokemonModal.hide();
-      cardDiv.innerHTML = '';
+      modalCardDiv.innerHTML = '';
       searchInput.value = '';
-    });
+      selectButton.removeEventListener('click', selectListener);
+    };
+
+    selectButton.addEventListener('click', selectListener);
   } catch (err) {
     console.log(err);
   }
-}
+});
 
+startButton.addEventListener('click', () => {
+  gameIsRuning = !gameIsRuning;
+  gameIsRuning
+    ? (startButton.textContent = 'jugando!')
+    : (startButton.textContent = 'iniciar');
+});
+
+// listener agregado al objeto window para que pueda ser llamado directamente desde el atributo onclick de los botones abilityButton (Al importar game.js como type module las funciones no se agregan por defecto al objeto window)
 window.handleAbilityButtonClick = (currentPlayer) => {
   if (gameIsRuning) {
     if (currentPlayer === 'player1') {
