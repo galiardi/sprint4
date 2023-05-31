@@ -82,16 +82,27 @@ startButton.addEventListener('click', () => {
 
 // listener agregado al objeto window para que pueda ser llamado directamente desde el atributo onclick de los botones abilityButton (Al importar game.js como type module las funciones no se agregan por defecto al objeto window)
 window.handleAbilityButtonClick = (currentPlayer) => {
+  // PENDIENTE: crear una funcion para no repetir código
   if (gameIsRuning) {
     if (currentPlayer === 'player1') {
       playerCharacters.player2.hurt(Math.round(Math.random() * 50));
       const player2HealthBar = document.getElementById('player2-healthBar');
       player2HealthBar.style = `width: ${playerCharacters.player2.health}%;`;
+
+      if (!playerCharacters.player2.isAlive) {
+        const card = getCard2(playerCharacters.player2, '18rem', currentPlayer);
+        playerDiv2.innerHTML = card;
+      }
     }
     if (currentPlayer === 'player2') {
       playerCharacters.player1.hurt(Math.round(Math.random() * 50));
       const player1HealthBar = document.getElementById('player1-healthBar');
       player1HealthBar.style = `width: ${playerCharacters.player1.health}%;`;
+    }
+
+    if (!playerCharacters.player1.isAlive) {
+      const card = getCard2(playerCharacters.player1, '18rem', currentPlayer);
+      playerDiv1.innerHTML = card;
     }
   }
 };
