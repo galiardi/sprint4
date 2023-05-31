@@ -16,7 +16,7 @@ class PlayerCharacter extends Pokemon {
     return this.#isAlive;
   }
 
-  set health(value) {
+  hurt(value) {
     const result = this.#health - value;
     if (result <= 0) {
       this.#isAlive = false;

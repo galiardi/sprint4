@@ -41,6 +41,14 @@
   border-radius: 0.5rem;
 }
 
+.startButton {
+  border-radius: 100%;
+  width: 5rem;
+  height: 5rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+}
+
 @media screen and (min-width: 760px) {
   .players {
     flex-direction: row;

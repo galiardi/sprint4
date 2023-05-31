@@ -1,5 +1,5 @@
-function getCard2(data, cardWidth = '') {
-  const { id, name, height, weight, imgUrl, abilities, isAlive, health } = data;
+function getCard2(data, cardWidth = '', currentPlayer) {
+  const { name, imgUrl, abilities, isAlive, health } = data;
 
   const colors = [
     'secondary',
@@ -12,7 +12,7 @@ function getCard2(data, cardWidth = '') {
 
   const abilitiesButtons = abilities.map(
     (ability, i) =>
-      `<button class="btn btn-${colors[i]} abilityButton" >${ability.ability.name}</button>`
+      `<button onclick="handleAbilityButtonClick('${currentPlayer}')" class="btn btn-${colors[i]} abilityButton" >${ability.ability.name}</button>`
   );
   return `
   <div class="card text-bg-dark text-center" style="width: ${cardWidth};">
@@ -27,7 +27,7 @@ function getCard2(data, cardWidth = '') {
     </div>
     <div class="card-footer" >
       <div class="healthBarContainer">
-        <div id="healthBar2" class="healthBar" style="width: ${health}%"></div>
+        <div id="${currentPlayer}-healthBar" class="healthBar" style="width: ${health}%"></div>
       </div>
     </div>
   </div>`;

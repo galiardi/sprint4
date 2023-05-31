@@ -8,20 +8,33 @@ const searchForm = document.getElementById('searchForm');
 const cardDiv = document.getElementById('cardDiv');
 const playerDiv1 = document.getElementById('playerDiv1');
 const playerDiv2 = document.getElementById('playerDiv2');
+const startButton = document.getElementById('startButton');
 
+let gameIsRuning = false;
 let currentPlayer = undefined;
+let playerCharacters = {
+  player1: {},
+  player2: {},
+};
 
 selectPokemon1Button.addEventListener('click', () => {
-  currentPlayer = 1;
+  currentPlayer = 'player1';
   selectPokemonModal.show();
 });
 
 selectPokemon2Button.addEventListener('click', () => {
-  currentPlayer = 2;
+  currentPlayer = 'player2';
   selectPokemonModal.show();
 });
 
 searchForm.addEventListener('submit', handleSearch);
+
+startButton.addEventListener('click', () => {
+  gameIsRuning = !gameIsRuning;
+  gameIsRuning
+    ? (startButton.textContent = 'parar')
+    : (startButton.textContent = 'iniciar');
+});
 
 // listeners
 
@@ -39,7 +52,7 @@ async function handleSearch(e) {
     const pokemon = new PlayerCharacter(data);
     console.log(pokemon);
 
-    const card = getCard2(pokemon, '18rem');
+    const card = getCard2(pokemon, '18rem', currentPlayer);
     cardDiv.innerHTML = card;
 
     // Seleccionar
@@ -47,10 +60,12 @@ async function handleSearch(e) {
       'selectPokemonModal-selectButton'
     );
     selectButton.addEventListener('click', () => {
-      if (currentPlayer === 1) {
+      if (currentPlayer === 'player1') {
         playerDiv1.innerHTML = card;
-      } else if (currentPlayer === 2) {
+        playerCharacters.player1 = pokemon;
+      } else if (currentPlayer === 'player2') {
         playerDiv2.innerHTML = card;
+        playerCharacters.player2 = pokemon;
       }
       selectPokemonModal.hide();
       cardDiv.innerHTML = '';
@@ -60,3 +75,18 @@ async function handleSearch(e) {
     console.log(err);
   }
 }
+
+window.handleAbilityButtonClick = (currentPlayer) => {
+  if (gameIsRuning) {
+    if (currentPlayer === 'player1') {
+      playerCharacters.player2.hurt(Math.round(Math.random() * 50));
+      const player2HealthBar = document.getElementById('player2-healthBar');
+      player2HealthBar.style = `width: ${playerCharacters.player2.health}%;`;
+    }
+    if (currentPlayer === 'player2') {
+      playerCharacters.player1.hurt(Math.round(Math.random() * 50));
+      const player1HealthBar = document.getElementById('player1-healthBar');
+      player1HealthBar.style = `width: ${playerCharacters.player1.health}%;`;
+    }
+  }
+};
